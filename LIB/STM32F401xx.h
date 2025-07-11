@@ -22,13 +22,16 @@
 #define ROM_BASEADDR   0x1FFFF000UL
 
  /**************************************         AHB Peripheral Base Adresses          ******************************************/
-#define GPIOA_BASEADDR 0x40010800UL
-#define GPIOB_BASEADDR 0x40010C00UL
-#define GPIOC_BASEADDR 0x40011000UL
-#define GPIOD_BASEADDR 0x40011400UL
-#define GPIOE_BASEADDR 0x40011800UL
+#define GPIOA_BASEADDR 0X40020000UL
+#define GPIOB_BASEADDR 0X40020400UL
+#define GPIOC_BASEADDR 0X40020800UL
+#define GPIOD_BASEADDR 0X40020C00UL
+#define GPIOE_BASEADDR 0X40021000UL
+#define GPIOF_BASEADDR 0X40021400UL
+#define GPIOG_BASEADDR 0X40021800UL
+#define GPIOH_BASEADDR 0X40021C00UL
 
-#define RCC_BASEADDR   0x4002800UL
+#define RCC_BASEADDR   0x40023800UL
 
 #define SYSTIC_BASEADDR 0xE000E010UL
 
@@ -50,13 +53,15 @@ typedef struct
  /**************************************       GPIO Register Definition Structure       ******************************************/
 typedef struct
 {
-  volatile uint32_t CRL;  /* Port configuration register low  */
-  volatile uint32_t CRH;  /* Port configuration register high */
-  volatile uint32_t IDR;  /* Port input data register        */
-  volatile uint32_t ODR;  /* Port output data register       */
-  volatile uint32_t BSRR; /* Port bit set/reset register     */
-  volatile uint32_t BRR;  /* Port bit reset register         */
-  volatile uint32_t LCKR; /* Port configuration lock register*/
+  volatile uint32_t MODER;   /* GPIO PORT mode register              */
+  volatile uint32_t OTYPER;  /* GPIO PORT output type register       */
+  volatile uint32_t OSPEEDR; /* GPIO PORT output speed register      */
+  volatile uint32_t PUPDR;   /* GPIO PORT pull-up/pull-down register */
+  volatile uint32_t IDR;     /* GPIO PORT input data register        */
+  volatile uint32_t ODR;     /* GPIO PORT output data register       */
+  volatile uint32_t BSRR;    /* GPIO PORT bit set/reset register     */
+  volatile uint32_t LCKR;    /* GPIO PORT configuration lock register*/
+  volatile uint32_t AFR[2];  /* GPIO alternate function low register */
 } GPIO_REGDEF_t;
 
  /**************************************       RCC Register Definitions Structure       ******************************************/
@@ -100,6 +105,9 @@ typedef struct
  #define MGPIOC ((GPIO_REGDEF_t *)GPIOC_BASEADDR)
  #define MGPIOD ((GPIO_REGDEF_t *)GPIOD_BASEADDR)
  #define MGPIOE ((GPIO_REGDEF_t *)GPIOE_BASEADDR)
+ #define MGPIOF ((GPIO_REGDEF_t *)GPIOF_BASEADDR)
+ #define MGPIOG ((GPIO_REGDEF_t *)GPIOG_BASEADDR)
+ #define MGPIOH ((GPIO_REGDEF_t *)GPIOH_BASEADDR)
 
  /**************************************         RCC Peripheral Definitions       *********************************************/
 
